@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <template id="product-card-template">
+        <div class="product-card">
+            <img class="product-image" src="" alt="Изображение товара">
+            <h2 class="product-title"></h2>
+            <p class="product-price"></p>
+            <a class="product-a">ссылка на товар</a>
+        </div>
+    </template>
+    <div id="product-container"></div>
+    
+    <script>
+
+        const template = document.getElementById('product-card-template')
+
+        const productContainer = document.getElementById('product-container')
+
+        const products = [
+            { title:'Пельмени', price:'299,99 руб', image:'product1.jpg',a:'https://disk.yandex.ru/d/3XAQHP1dLoaKjw' },
+            { title:'Чебупели', price:'129,99 руб', image:'product2.jpg',a:'drfrf' },
+            { title:'Сосиски', price:'159,99 руб', image:'product3.jpg',a:'frfrf' },
+            { title:'Куриная грудка', price:'299,99 руб', image:'product4.jpg',a:'frfrfr' },
+            { title:'Колбаса', price:'199,99 руб', image:'product5.jpg',a:'frfrfrf' }
+        ]
+
+        products.forEach(product => {
+
+            const clone = document.importNode(template.content, true)
+
+            const image = clone.querySelector('.product-image')
+            image.src = product.image
+
+            const title = clone.querySelector('.product-title')
+            title.textContent = product.title
+
+            const price = clone.querySelector('.product-price')
+            price.textContent = product.price
+
+            const a = clone.querySelector('.product-a')
+            a.href = product.a
+
+            productContainer.appendChild(clone)
+
+        })
+    </script>
+</body>
+</html>
